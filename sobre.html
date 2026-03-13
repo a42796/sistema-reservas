@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}TechCore | Sobre o Projeto{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <div class="card p-5 border-0 shadow-sm mb-4 bg-dark text-white">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h1 class="display-4 fw-bold">Sobre a <span class="text-primary">TechCore</span></h1>
+                    <p class="lead opacity-75">Uma solução inteligente para gestão de infraestruturas e recursos desenvolvida em ambiente académico.</p>
+                </div>
+                <div class="col-md-4 text-center d-none d-md-block">
+                    <i class="fas fa-info-circle fa-5x text-primary opacity-50"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card p-4 h-100">
+                    <h4 class="fw-bold text-primary"><i class="fas fa-graduation-cap me-2"></i>Contexto</h4>
+                    <p class="text-muted">
+                        Este projeto foi desenvolvido no âmbito das aulas de <strong>Flask e Empreendedorismo</strong>. 
+                        O objetivo principal foi criar uma aplicação robusta que resolvesse problemas reais de agendamento e controlo de recursos.
+                    </p>
+                    <p class="text-muted">
+                        Focámo-nos na experiência do utilizador e na segurança dos dados através de autenticação local.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card p-4 h-100">
+                    <h4 class="fw-bold text-primary"><i class="fas fa-code me-2"></i>Stack Tecnológica</h4>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item bg-transparent"><i class="fab fa-python text-secondary me-2"></i><strong>Backend:</strong> Flask (Python)</li>
+                        <li class="list-group-item bg-transparent"><i class="fas fa-database text-secondary me-2"></i><strong>Base de Dados:</strong> SQLite3</li>
+                        <li class="list-group-item bg-transparent"><i class="fab fa-bootstrap text-secondary me-2"></i><strong>Frontend:</strong> Bootstrap 5 & Jinja2</li>
+                        <li class="list-group-item bg-transparent"><i class="fas fa-shield-alt text-secondary me-2"></i><strong>Segurança:</strong> Sessões & @login_required</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-5">
+            <a href="{{ url_for('index') }}" class="btn btn-outline-primary rounded-pill px-5 fw-bold">
+                <i class="fas fa-arrow-left me-2"></i>Voltar ao Início
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="mt-5 text-center text-muted small">
+    <p>© 2026 TechCore Systems | Aula 28 - Projeto Finalizado</p>
+</div>
+{% endblock %}

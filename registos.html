@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}TechCore | Criar Conta{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5 col-lg-4">
+        <div class="card p-4 mt-5">
+            <div class="text-center mb-4">
+                <div class="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 70px; height: 70px;">
+                    <i class="fas fa-user-plus fa-2x"></i>
+                </div>
+                <h3 class="fw-bold text-dark">Criar Conta</h3>
+                <p class="text-muted small">Registe-se para aceder ao sistema</p>
+            </div>
+
+            <form action="{{ url_for('registo') }}" method="POST">
+                <div class="form-floating mb-3">
+                    <input type="text" name="username" class="form-control rounded-3" id="user" placeholder="utilizador" required>
+                    <label for="user"><i class="fas fa-user me-2"></i>Nome de Utilizador</label>
+                </div>
+                
+                <div class="form-floating mb-4">
+                    <input type="password" name="password" class="form-control rounded-3" id="pass" placeholder="senha" required>
+                    <label for="pass"><i class="fas fa-lock me-2"></i>Palavra-passe</label>
+                </div>
+                
+                <button type="submit" class="btn btn-success w-100 py-3 rounded-pill fw-bold shadow-sm">
+                    <i class="fas fa-check me-2"></i>REGISTAR
+                </button>
+            </form>
+
+            <div class="text-center mt-4">
+                <p class="small text-muted">Já tem conta? 
+                    <a href="{{ url_for('login') }}" class="text-primary fw-bold text-decoration-none">Faça Login</a>
+                </p>
+            </div>
+        </div>
+        
+        <div class="alert alert-light mt-3 text-center border-0 small">
+            <i class="fas fa-database me-1"></i> Dados gravados em <strong>database.db</strong>
+        </div>
+    </div>
+</div>
+{% endblock %}

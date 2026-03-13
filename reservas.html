@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}TechCore | Gestão de Reservas{% endblock %}
+
+{% block content %}
+<div class="card p-4">
+    
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-dark"><i class="fas fa-list-ul text-primary me-2"></i>Minhas Reservas</h2>
+        <a href="{{ url_for('criar_reserva') }}" class="btn btn-primary rounded-pill px-4 shadow-sm">
+            <i class="fas fa-plus me-2"></i>+ Nova Reserva
+        </a>
+    </div>
+
+    <div class="bg-light p-3 rounded-3 mb-4 border">
+        <form method="GET" action="{{ url_for('listar_reservas') }}" class="row g-3 align-items-end">
+            <div class="col-md-4">
+                <label class="form-label small fw-bold text-muted">Filtrar por Recurso</label>
+                <select name="recurso_id" class="form-select shadow-sm">
+                    <option value="">Todos os Recursos</option>
+                    {% for rec in recursos %}
+                    <option value="{{ rec.id }}" {% if f_recurso == rec.id|string %}selected{% endif %}>
+                        {{ rec.nome }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label small fw-bold text-muted">Filtrar por Data</label>
+                <input type="date" name="data" class="form-control shadow-sm" value="{{ f_data }}">
+            </div>
+            <div class="col-md-4 d-flex gap-2">
+                <button type="submit" class="btn btn-dark w-100 rounded-pill fw-bold">
+                    <i class="fas fa-filter me-2"></i>Filtrar
+                </button>
+                <a href="{{ url_for('listar_reservas') }}" class="btn btn-outline-secondary w-100 rounded-pill text-decoration-none text-center">
+                    Limpar
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>Recurso</th>
+                    <th>Data</th>
+                    <th>Hora</th>
+                    <th class="text-center">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for res in reservas %}
+                <tr>
+                    <td>
+                        <span class="fw-bold text-primary">{{ res.nome_recurso or res.nome }}</span>
+                    </td>
+                    <td><i class="far fa-calendar-alt me-1 text-muted"></i> {{ res.data }}</td>
+                    <td><span class="badge bg-info text-dark px-3">{{ res.hora }}</span></td>
+                    <td class="text-center">
+                        <div class="btn-group shadow-sm">
+                            <a href="{{ url_for('editar_reserva', id=res.id) }}" class="btn btn-sm btn-outline-secondary" title="Editar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="{{ url_for('delete_reserva', id=res.id) }}" 
+                               class="btn btn-sm btn-outline-danger"
+                               onclick="return confirm('Deseja realmente apagar esta reserva?')" title="Apagar">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="4" class="text-center py-5 text-muted">
+                        <i class="fas fa-search fa-3x mb-3 opacity-25"></i>
+                        <p>Nenhuma reserva encontrada na base de dados.</p>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="text-center mt-3 no-print">
+    <p class="text-muted small">A visualizar dados locais de <strong>database.db</strong></p>
+</div>
+{% endblock %}

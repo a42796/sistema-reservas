@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}TechCore | Formulário de Teste{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card p-4">
+            <div class="d-flex align-items-center mb-4">
+                <i class="fas fa-edit fa-2x text-info me-3"></i>
+                <h2 class="mb-0">Formulário de Registo</h2>
+            </div>
+
+            <p class="text-muted mb-4">Insira a informação abaixo para testar a comunicação com a base de dados local.</p>
+
+            <form method="POST">
+                <div class="mb-4">
+                    <label class="form-label fw-bold text-secondary">Informação / Dado</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light"><i class="fas fa-database text-info"></i></span>
+                        <input type="text" name="dado" class="form-control" placeholder="Ex: Sala de Reuniões B" required>
+                    </div>
+                    <div class="form-text">Este dado será processado pela rota no seu app.py.</div>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-info text-white fw-bold rounded-pill px-5 shadow-sm">
+                        <i class="fas fa-vial me-2"></i>Testar Envio
+                    </button>
+                    <a href="{{ url_for('dashboard') }}" class="btn btn-light rounded-pill">Voltar ao Painel</a>
+                </div>
+            </form>
+        </div>
+
+        <div class="alert alert-light mt-4 border text-center small">
+            <i class="fas fa-info-circle me-2"></i> 
+            A funcionar em modo local: <strong>127.0.0.1:5000</strong>
+        </div>
+    </div>
+</div>
+{% endblock %}

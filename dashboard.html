@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}TechCore | Painel de Controlo{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="card p-5 bg-white">
+            <div class="d-flex align-items-center mb-4">
+                <div class="bg-primary text-white rounded-circle p-3 me-3">
+                    <i class="fas fa-user-shield fa-2x"></i>
+                </div>
+                <div>
+                    <h1 class="display-5 mb-0">Bem-vindo, {{ nome }}!</h1>
+                    <p class="lead text-muted">Gestão Central TechCore - Acesso Privado</p>
+                </div>
+            </div>
+            
+            <hr>
+            
+            <div class="row mt-4">
+                <div class="col-md-4 mb-3">
+                    <div class="p-4 border rounded shadow-sm bg-light text-center">
+                        <i class="fas fa-calendar-check text-primary fa-2x mb-2"></i>
+                        <h4 class="fw-bold">{{ stats.total if stats else 0 }}</h4>
+                        <span class="text-secondary">Total de Reservas</span>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <a href="{{ url_for('listar_reservas') }}" class="text-decoration-none">
+                        <div class="p-4 border rounded shadow-sm bg-light text-center h-100">
+                            <i class="fas fa-list text-warning fa-2x mb-2"></i>
+                            <h4 class="text-dark">Gerir</h4>
+                            <span class="text-secondary">Minhas Reservas</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <a href="{{ url_for('menu_relatorios') }}" class="text-decoration-none">
+                        <div class="p-4 border rounded shadow-sm bg-light text-center h-100">
+                            <i class="fas fa-chart-pie text-danger fa-2x mb-2"></i>
+                            <h4 class="text-dark">Estatísticas</h4>
+                            <span class="text-secondary">Ver Relatórios</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-4 p-3 bg-dark text-white rounded">
+                <small><i class="fas fa-lock me-2"></i>Sessão protegida por <code>@login_required</code></small>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

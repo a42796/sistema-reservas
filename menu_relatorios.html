@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}TechCore | Centro de Relatórios{% endblock %}
+
+{% block content %}
+<div class="container mt-2">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex align-items-center">
+                <i class="fas fa-chart-pie fa-2x text-primary me-3"></i>
+                <div>
+                    <h2 class="fw-bold text-dark mb-0">Centro de Relatórios</h2>
+                    <p class="text-muted mb-0">Estatísticas de utilização de recursos da TechCore</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card p-0 mb-4"> <div class="card-header bg-white fw-bold py-3">
+                    <i class="fas fa-list-ul me-2 text-primary"></i>Reservas por Recurso
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Nome do Recurso</th>
+                                    <th class="text-center">Total de Reservas</th>
+                                    <th class="text-end">Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in resumo %}
+                                <tr>
+                                    <td>
+                                        <span class="fw-bold text-dark">{{ item.nome }}</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="badge bg-primary rounded-pill px-3">{{ item.total }}</span>
+                                    </td>
+                                    <td class="text-end">
+                                        <a href="{{ url_for('relatorio_por_recurso', recurso_id=item.id) }}" 
+                                           class="btn btn-sm btn-outline-primary rounded-pill px-3">
+                                            Detalhes <i class="fas fa-search-plus ms-1"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% else %}
+                                <tr>
+                                    <td colspan="3" class="text-center text-muted py-4">
+                                        Nenhum dado encontrado no database.db.
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card bg-primary text-white p-4 border-0 shadow">
+                <h5 class="fw-bold"><i class="fas fa-lightbulb me-2"></i>Dica de Gestão</h5>
+                <p class="small opacity-75">Identifique os recursos mais procurados para otimizar a alocação de salas e equipamentos.</p>
+                <hr class="bg-white opacity-25">
+                <div class="d-grid gap-2">
+                    <button onclick="window.print()" class="btn btn-light btn-sm fw-bold rounded-pill">
+                        <i class="fas fa-print me-2"></i>Imprimir Resumo
+                    </button>
+                    <a href="{{ url_for('dashboard') }}" class="btn btn-outline-light btn-sm rounded-pill">
+                        Voltar ao Painel
+                    </a>
+                </div>
+            </div>
+            
+            <div class="card mt-3 p-3 text-center border-0 bg-light">
+                <small class="text-muted">
+                    <i class="fas fa-sync-alt me-1"></i> Dados atualizados em tempo real.
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

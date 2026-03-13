@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}TechCore | Login{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5 col-lg-4">
+        <div class="card p-4 mt-5">
+            <div class="text-center mb-4">
+                <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 70px; height: 70px;">
+                    <i class="fas fa-user-lock fa-2x"></i>
+                </div>
+                <h3 class="fw-bold text-dark">Acesso Restrito</h3>
+                <p class="text-muted small">Insira as suas credenciais TechCore</p>
+            </div>
+            
+            {% if erro %}
+                <div class="alert alert-danger py-2 small border-0 shadow-sm text-center mb-4">
+                    <i class="fas fa-exclamation-circle me-1"></i> {{ erro }}
+                </div>
+            {% endif %}
+
+            <form method="POST" action="{{ url_for('login') }}">
+                <div class="form-floating mb-3">
+                    <input type="text" name="username" class="form-control rounded-3" id="user" placeholder="utilizador" required>
+                    <label for="user"><i class="fas fa-user me-2"></i>Utilizador</label>
+                </div>
+                
+                <div class="form-floating mb-4">
+                    <input type="password" name="password" class="form-control rounded-3" id="pass" placeholder="senha" required>
+                    <label for="pass"><i class="fas fa-key me-2"></i>Palavra-passe</label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary w-100 py-3 rounded-pill fw-bold shadow-sm">
+                    <i class="fas fa-sign-in-alt me-2"></i>ENTRAR
+                </button>
+            </form>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="{{ url_for('index') }}" class="text-secondary text-decoration-none small">
+                <i class="fas fa-arrow-left me-1"></i> Voltar à página inicial
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}TechCore | Início{% endblock %}
+
+{% block content %}
+<div class="row align-items-center py-5">
+    <div class="col-lg-6">
+        <h1 class="display-3 fw-bold text-dark">Inovação e <span class="text-primary">Controlo</span></h1>
+        <p class="lead text-secondary my-4">
+            Gerencie os seus recursos, visualize estatísticas e controle as suas reservas de infraestrutura com a <strong>TechCore Systems</strong>.
+        </p>
+        
+        <div class="d-flex gap-3">
+            {% if not session.get('user') %}
+                <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg px-5 rounded-pill shadow">
+                    <i class="fas fa-sign-in-alt me-2"></i>Começar
+                </a>
+            {% else %}
+                <a href="{{ url_for('dashboard') }}" class="btn btn-primary btn-lg px-5 rounded-pill shadow">
+                    <i class="fas fa-chart-line me-2"></i>Ir para o Painel
+                </a>
+            {% endif %}
+            
+            <a href="/sobre" class="btn btn-outline-secondary btn-lg px-5 rounded-pill">Saiba Mais</a>
+        </div>
+
+        <div class="mt-5 d-flex gap-4 text-secondary">
+            <div><i class="fas fa-check-circle text-success me-2"></i>Gestão de Reservas</div>
+            <div><i class="fas fa-check-circle text-success me-2"></i>Relatórios Aula 28</div>
+        </div>
+    </div>
+
+    <div class="col-lg-6 text-center d-none d-lg-block">
+        <i class="fas fa-network-wired fa-10x text-primary opacity-25"></i>
+    </div>
+</div>
+
+<hr class="my-5">
+
+<div class="row text-center">
+    <div class="col-md-4">
+        <i class="fas fa-shield-alt fa-2x text-primary mb-3"></i>
+        <h5>Segurança</h5>
+        <p class="text-muted small">Acesso protegido por autenticação.</p>
+    </div>
+    <div class="col-md-4">
+        <i class="fas fa-database fa-2x text-primary mb-3"></i>
+        <h5>Base de Dados</h5>
+        <p class="text-muted small">Armazenamento local com SQLite3.</p>
+    </div>
+    <div class="col-md-4">
+        <i class="fas fa-file-invoice-dot fa-2x text-primary mb-3"></i>
+        <h5>Relatórios</h5>
+        <p class="text-muted small">Estatísticas detalhadas de uso.</p>
+    </div>
+</div>
+{% endblock %}

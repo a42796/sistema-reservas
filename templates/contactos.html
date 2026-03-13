@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}TechCore | Suporte{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card p-5">
+            <div class="d-flex align-items-center mb-4">
+                <i class="fas fa-envelope-open-text fa-2x text-primary me-3"></i>
+                <h2 class="mb-0">Central de Suporte</h2>
+            </div>
+            
+            <p class="text-muted mb-4">Utilize o formulário abaixo para enviar o seu pedido de assistência técnica à equipa <strong>TechCore</strong>.</p>
+
+            <form action="{{ url_for('contactos') }}" method="POST" class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label fw-bold">Nome Completo</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light"><i class="fas fa-user text-primary"></i></span>
+                        <input type="text" name="nome" class="form-control" placeholder="Ex: João Silva" required>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <label class="form-label fw-bold">Email Corporativo</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light"><i class="fas fa-at text-primary"></i></span>
+                        <input type="email" name="email" class="form-control" placeholder="email@empresa.com" required>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label fw-bold">Mensagem / Descrição do Problema</label>
+                    <textarea name="mensagem" class="form-control" rows="4" placeholder="Descreva detalhadamente o seu pedido..." required></textarea>
+                </div>
+
+                <div class="col-12 mt-4 d-flex justify-content-between">
+                    <button type="submit" class="btn btn-primary px-5 rounded-pill">
+                        <i class="fas fa-paper-plane me-2"></i>Enviar Mensagem
+                    </button>
+                    <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary px-4 rounded-pill">
+                        Voltar
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

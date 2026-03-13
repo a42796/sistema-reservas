@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}TechCore | Registo Concluído{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="card p-5 text-center border-0 shadow-sm">
+            <div class="mb-4">
+                <div class="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center shadow-sm" style="width: 80px; height: 80px;">
+                    <i class="fas fa-user-check fa-2x"></i>
+                </div>
+            </div>
+
+            <h2 class="fw-bold text-dark">Registo Efetuado!</h2>
+            <p class="lead text-muted my-3">Olá <strong>{{ nome }}</strong>, a tua conta foi criada e os dados foram guardados com sucesso no <code>database.db</code>.</p>
+            
+            <hr class="my-4 opacity-25">
+
+            <div class="d-grid gap-2">
+                <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg rounded-pill fw-bold shadow-sm">
+                    <i class="fas fa-sign-in-alt me-2"></i>Ir para o Login
+                </a>
+                <a href="{{ url_for('index') }}" class="btn btn-link text-secondary text-decoration-none small">
+                    Voltar à Página Inicial
+                </a>
+            </div>
+        </div>
+
+        <div class="mt-4 text-center small text-muted">
+            <i class="fas fa-shield-alt me-1 text-success"></i> Sistema de Autenticação TechCore Aula 28
+        </div>
+    </div>
+</div>
+{% endblock %}

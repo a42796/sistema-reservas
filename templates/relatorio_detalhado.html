@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}TechCore | Detalhes do Relatório{% endblock %}
+
+{% block content %}
+<div class="container mt-2">
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            .card { border: none !important; }
+            .badge { border: 1px solid #000 !important; color: #000 !important; }
+        }
+    </style>
+
+    <div class="card p-0 overflow-hidden">
+        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-3">
+            <h4 class="mb-0 fw-bold"><i class="fas fa-file-alt me-2"></i>Relatório: {{ titulo }}</h4>
+            <div class="no-print">
+                <button onclick="window.print()" class="btn btn-outline-light btn-sm me-2 rounded-pill">
+                    <i class="fas fa-print me-1"></i> Imprimir
+                </button>
+                <a href="{{ url_for('menu_relatorios') }}" class="btn btn-light btn-sm text-dark rounded-pill">
+                    <i class="fas fa-undo me-1"></i> Voltar
+                </a>
+            </div>
+        </div>
+        
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0 align-middle">
+                    <thead class="table-light text-uppercase small">
+                        <tr>
+                            <th class="ps-4 py-3">Utilizador</th>
+                            <th class="py-3 text-center">Data da Reserva</th>
+                            <th class="py-3 text-center">Horário</th>
+                            <th class="py-3 text-end pe-4">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for res in reservas %}
+                        <tr>
+                            <td class="ps-4 fw-bold text-dark">
+                                <i class="fas fa-user-circle text-primary me-2"></i>{{ res.username }}
+                            </td>
+                            <td class="text-center">{{ res.data }}</td>
+                            <td class="text-center">
+                                <span class="badge bg-info text-dark px-3 rounded-pill">{{ res.hora }}</span>
+                            </td>
+                            <td class="text-end pe-4">
+                                <span class="text-success small fw-bold">
+                                    <i class="fas fa-check-circle me-1"></i>Confirmada
+                                </span>
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="4" class="text-center py-5 text-muted">
+                                <i class="fas fa-folder-open fa-3x mb-3 d-block opacity-25"></i>
+                                Nenhuma reserva registada para este recurso até ao momento.
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="card-footer bg-light text-end text-muted small py-3">
+            <i class="fas fa-info-circle me-1"></i> 
+            Extraído de <strong>database.db</strong> | TechCore Systems 2024
+        </div>
+    </div>
+</div>
+{% endblock %}

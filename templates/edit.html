@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}TechCore | Editar Utilizador{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="card p-4">
+            <div class="text-center mb-4">
+                <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px; font-size: 1.5rem; font-weight: bold;">
+                    {{ user['username'][0] | upper }}
+                </div>
+                <h3 class="fw-bold text-dark">Editar Perfil</h3>
+                <p class="text-muted small">ID do Utilizador: #{{ user['id'] }}</p>
+            </div>
+
+            <form method="POST">
+                <div class="mb-3">
+                    <label class="form-label fw-bold text-secondary">
+                        <i class="fas fa-user me-2"></i>Nome de Utilizador
+                    </label>
+                    <input type="text" name="username" class="form-control form-control-lg fs-6 shadow-sm" 
+                           value="{{ user['username'] }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold text-secondary">
+                        <i class="fas fa-lock me-2"></i>Nova Password
+                    </label>
+                    <input type="password" name="password" class="form-control form-control-lg fs-6 shadow-sm" 
+                           placeholder="Deixe em branco para não alterar">
+                </div>
+
+                <div class="d-grid gap-2 mt-4">
+                    <button type="submit" class="btn btn-primary btn-lg rounded-pill fw-bold shadow-sm">
+                        <i class="fas fa-save me-2"></i>Guardar Alterações
+                    </button>
+                    <a href="{{ url_for('listar_users') if 'listar_users' in request.endpoint else '#' }}" class="btn btn-outline-secondary btn-lg rounded-pill fw-bold border-0">
+                        Cancelar e Voltar
+                    </a>
+                </div>
+            </form>
+        </div>
+        
+        <div class="alert alert-info mt-4 border-0 shadow-sm small text-center">
+            <i class="fas fa-database me-2"></i> 
+            Alterações guardadas diretamente no ficheiro <strong>database.db</strong>.
+        </div>
+    </div>
+</div>
+{% endblock %}

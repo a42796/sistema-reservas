@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}TechCore | O Teu Perfil{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card p-5 border-0 shadow-sm">
+            <div class="text-center mb-4">
+                <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center mb-3 shadow" 
+                     style="width: 100px; height: 100px; font-size: 2.5rem; font-weight: bold;">
+                    {{ nome[0] | upper }}
+                </div>
+                <h2 class="fw-bold text-dark">{{ nome }}</h2>
+                <span class="badge bg-warning text-dark rounded-pill px-3">Administrador de Sistemas</span>
+            </div>
+
+            <hr class="my-4">
+
+            <div class="row g-4">
+                <div class="col-sm-6">
+                    <label class="text-muted small text-uppercase fw-bold">ID do Utilizador</label>
+                    <p class="fs-5 text-dark"><i class="fas fa-fingerprint me-2 text-primary"></i>#{{ session.get('user_id', '1') }}</p>
+                </div>
+                <div class="col-sm-6">
+                    <label class="text-muted small text-uppercase fw-bold">Estado da Conta</label>
+                    <p class="fs-5 text-dark"><i class="fas fa-check-circle me-2 text-success"></i>Ativa</p>
+                </div>
+                <div class="col-12">
+                    <label class="text-muted small text-uppercase fw-bold">Acesso à Base de Dados</label>
+                    <p class="text-dark"><i class="fas fa-database me-2 text-secondary"></i>Conectado a <strong>database.db</strong></p>
+                </div>
+            </div>
+
+            <div class="mt-5 d-flex gap-2">
+                <a href="{{ url_for('edit_user', id=session.get('user_id', 1)) }}" class="btn btn-primary rounded-pill px-4 flex-grow-1">
+                    <i class="fas fa-user-edit me-2"></i>Editar Dados
+                </a>
+                <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary rounded-pill px-4">
+                    Voltar
+                </a>
+            </div>
+        </div>
+
+        <div class="alert alert-light mt-4 text-center border-0 small">
+            <i class="fas fa-shield-alt me-2 text-primary"></i> 
+            Sessão autenticada via decorador <strong>@login_required</strong>
+        </div>
+    </div>
+</div>
+{% endblock %}
